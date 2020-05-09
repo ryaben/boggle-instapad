@@ -1,0 +1,326 @@
+@font-face {
+    font-family: 'Merriweather';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../res/fnt/Merriweather/Merriweather-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Alarm Clock';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../res/fnt/Alarm-Clock/alarm-clock.ttf');
+}
+
+body {
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    background-image: url("../res/img/wallpaper.png");
+    margin: 0;
+}
+
+body h4 {
+    width: 100%;
+}
+
+.icono {
+    width: 30%;
+    max-width: 50px;
+    padding: 2% 2% 2% 2%;
+}
+
+.navegacion-contenedor {
+    cursor: pointer;
+    display: flex;
+    border: none;
+    border-radius: 6px;
+    padding: 1%;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+
+.navegacion-contenedor:hover {
+    background-color: #42A5F5;
+    transition: ease-in-out 0.2s;
+}
+
+.navegacion-contenedor p {
+    font-weight: bold;
+    font-size: 75%;
+}
+
+.linea-vertical {
+    border-left: 2px solid black;
+    height: 50%;
+}
+
+.palabra-agregada {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 85%;
+    border: none;
+}
+
+.palabra-agregada div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin: 0 11% 0 11%;
+}
+
+.invalida {
+    text-decoration-line: line-through;
+}
+
+.puntos {
+    font-weight: bold;
+}
+
+.grilla-titulo {
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+    font-size: 95%;
+}
+
+.grilla-registro {
+    cursor: pointer;
+    font-size: 85%;
+}
+
+.grilla-titulo.columna-centro {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.borrar-registro {
+    width: 170%;
+    margin: 5% 15% 5% 15%;
+    border-radius: 6px;
+}
+
+.letra-inicial {
+    font-size: large;
+    font-weight: bold;
+    margin: 3% 10% 3% 10%;
+    left: 0;
+}
+
+.separador-letra {
+    border: solid 1px black;
+    width: 80%;
+    margin: 0 10% 0 10%;
+}
+
+#navegacion {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #1b406b;
+    width: 100%;
+    padding: 1% 0 1% 0;
+    border: 1px solid black;
+    border-radius: 6px;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+}
+
+#area-juego, #registros, #ajustes {
+    border: none;
+    width: 90%;
+    margin: 5% 5% 5% 5%;
+}
+
+#area-juego {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#jugadores {
+    font-size: 85%;
+}
+
+#temporizador {
+    font-family: 'Alarm Clock', 'serif';
+    font-size: 200%;
+    background-color: white;
+    border: none;
+}
+
+#palabra {
+    width: 35%;
+    margin: 5% 2% 5% 5%;
+}
+
+#escritura, #herramientas {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 5%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+#herramientas {
+    margin-bottom: 0%;
+}
+
+#escritura button {
+    border-radius: 6px;
+}
+
+#agregar-palabra, #borrar-palabra {
+    width: 22%;
+}
+
+#borrar-palabra {
+    margin-right: 5%;
+    margin-left: -3%;
+}
+
+#lista-palabras {
+    margin-bottom: 5%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+#conteos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 80%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+#conteos-palabras, #conteos-puntos, #conteos-botones {
+    border: none;
+}
+
+#palabras-anotadas, #puntos-acumulados {
+    font-weight: bold;
+}
+
+#conteos-botones {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#conteos-botones button {
+    border-radius: 6px;
+}
+
+#guardar-registro, #borrar-partida {
+    width: 40%;
+    margin: 0 5% 3% 5%;
+}
+
+#grilla-titulos {
+    border-radius: 6px;
+}
+
+#grilla-registros, #grilla-titulos {
+    background-color: white;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#registro-palabras {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: white;
+    border: 1px solid black;
+    margin-top: 2%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+#registro-palabras div {
+    display: flex;
+    justify-content: center;
+}
+
+#ajustes {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+#ordenamiento-palabras label {
+    font-size: 85%;
+}
+
+#ordenamiento-palabras div {
+    margin-bottom: 4%;
+}
+
+#orden-letra-label {
+    margin-right: 10%;
+}
+
+#volumen-alarma div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: -2% 15% 0 15%;
+}
+
+#duracion-temporizador div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 15% 0 15%;
+}
+
+#duracion-segundos {
+    width: 60%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+#slider-volumen {
+    width: 65%;
+}
+
+#valor-volumen {
+    display: inline;
+}
+
+#acerca-de p {
+    font-size: smaller;
+    text-align: justify;
+    width: 80%;
+    margin: 0 10% 5% 10%;
+}
+
+#acerca-de h6 {
+    margin: -2% 0 5% 0;
+}
+
+@media (min-width: 640px) {
+    
+    .palabra-agregada {
+        font-size: 100%;
+    }
+
+    .palabra-agregada div {
+        margin: 0 20% 0 20%;
+    }
+
+    #navegacion {
+        padding: 1% 0 1% 0;
+    }
+
+    #area-juego, #registros {
+    width: 94%;
+    margin: 3% 3% 3% 3%;
+    }
+}
