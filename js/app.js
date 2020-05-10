@@ -501,14 +501,17 @@ $(document).ready( function($){
 
     $duracionSegundos.on('input', function() {
         configurador.cambiarTiempo($(this)); 
+        configurador.guardarAjustes();
     })
 
     $sliderVolumen.on('input', function() {
         configurador.cambiarVolumen($(this));
+        configurador.guardarAjustes();
     });
 
     $ordenPalabras.on('input', function() {
         configurador.cambiarOrden($(this));
+        configurador.guardarAjustes();
     })
     
     //Instanciamientos y acciones en inicialización:
@@ -519,8 +522,8 @@ $(document).ready( function($){
     listaPalabras = new ListaPalabras([], []);
     listaRegistros = new ListaRegistros(handler.recuperarRegistros());
 
-    $(window).on('load', function() {handler.recuperarAjustes()});
-    $(window).on('unload', function() {configurador.guardarAjustes()});
+    //Trae los ajustes de los cookies a la aplicación en el inicio.
+    handler.recuperarAjustes();
 
     //El botón de anotar palabra empieza habilitado cuando el input esta vacío, esto lo impide.
     handler.borrarInput();
@@ -533,5 +536,4 @@ $(document).ready( function($){
     
     //Marca la primera pestaña para que no se empiece con todas desmarcadas.
     $contenedoresNavegacion[0].click();
-
-    });
+});
