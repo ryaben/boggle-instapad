@@ -157,24 +157,29 @@ $(document).ready( function($){
 
         //Carga la cookie con los ajustes del usuario y los aplica. Si falla, porque no hay cookie, la crea.
         recuperarAjustes() {
-            let traerCookie = JSON.parse(Cookies.get('ajustes'));
-
-            // this.ordenPalabras
-            configurador.ordenPalabras = traerCookie.ordenPalabras;
-            configurador.volumenAlarma = traerCookie.volumenAlarma;
-            configurador.tiempoJuego = traerCookie.tiempoJuego;
-
-            if (configurador.ordenPalabras === 'letra') {
-                $('#orden-letra').prop('checked', true);
-            } else if (configurador.ordenPalabras === 'ingreso') {
-                $('#orden-ingreso').prop('checked', true);
+            try {
+                let traerCookie = JSON.parse(Cookies.get('ajustes'));
+                
+                configurador.ordenPalabras = traerCookie.ordenPalabras;
+                configurador.volumenAlarma = traerCookie.volumenAlarma;
+                configurador.tiempoJuego = traerCookie.tiempoJuego;
+            } catch {
+                configurador.ordenPalabras = 'letra';
+                configurador.volumenAlarma = 80;
+                configurador.tiempoJuego = 180;
+            } finally {
+                if (configurador.ordenPalabras === 'letra') {
+                    $('#orden-letra').prop('checked', true);
+                } else if (configurador.ordenPalabras === 'ingreso') {
+                    $('#orden-ingreso').prop('checked', true);
+                }
+    
+                $sliderVolumen.val(configurador.volumenAlarma);
+                configurador.cambiarVolumen($sliderVolumen);
+                tiempoRestante = configurador.tiempoJuego;
+                $temporizador.text(configurador.tiempoJuego);
+                $duracionSegundos.val(configurador.tiempoJuego);
             }
-
-            $sliderVolumen.val(configurador.volumenAlarma);
-            configurador.cambiarVolumen($sliderVolumen);
-            tiempoRestante = configurador.tiempoJuego;
-            $temporizador.text(configurador.tiempoJuego);
-            $duracionSegundos.val(configurador.tiempoJuego);
         }
     }
 
