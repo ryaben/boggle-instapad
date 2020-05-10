@@ -504,6 +504,7 @@ $(document).ready( function($){
         listaRegistros.visualizarPalabras($(this));
     });
 
+    //Los ajustes se guardan en cada cambio a fines de evitar pérdidas de datos por crasheos, apagado de dispositivo y casos similares.
     $duracionSegundos.on('input', function() {
         configurador.cambiarTiempo($(this)); 
         configurador.guardarAjustes();
