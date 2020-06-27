@@ -15,7 +15,8 @@
 body {
     font-family: 'Merriweather', serif;
     text-align: center;
-    background-image: url("../res/img/wallpaper.png");
+    background-image: url("../res/img/fondo.jpg");
+    background-size: unset;
     margin: 0;
 }
 
@@ -53,6 +54,18 @@ body h4 {
 .linea-vertical {
     border-left: 2px solid black;
     height: 50%;
+}
+
+.dado, .dado-registro {
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.dado-registro {
+    font-size: 12px;
 }
 
 .palabra-agregada {
@@ -115,6 +128,24 @@ body h4 {
     margin: 0 10% 0 10%;
 }
 
+.tablero-registro {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    width: 90%;
+    margin: 2% 5% 2% 5%;
+}
+
+.estadisticas-titulo {
+    text-align: right;
+    padding-right: 3%;
+}
+
+.estadisticas-dato {
+    text-align: left;
+    padding-left: 3%;
+}
+
 #navegacion {
     display: flex;
     justify-content: space-evenly;
@@ -140,15 +171,19 @@ body h4 {
     justify-content: center;
 }
 
-#jugadores {
-    font-size: 85%;
-}
-
 #temporizador {
     font-family: 'Alarm Clock', 'serif';
     font-size: 200%;
     background-color: white;
+    color: darkblue;
     border: none;
+}
+
+#tablero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 4px;
 }
 
 #palabra {
@@ -159,14 +194,28 @@ body h4 {
 #escritura, #herramientas {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
     background-color: white;
-    border: 1px solid black;
+    border: 1.5px solid black;
     border-radius: 6px;
 }
 
-#herramientas {
+#escritura {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#tablero-virtual {
+    background-color: white;
+    border: 1.5px solid black;
+    border-radius: 6px;
+    padding: 5% 15% 5% 15%;
+}
+
+#herramientas, #tablero-virtual {
     margin-bottom: 0%;
 }
 
@@ -186,7 +235,7 @@ body h4 {
 #lista-palabras {
     margin-bottom: 5%;
     background-color: white;
-    border: 1px solid black;
+    border: 1.5px solid black;
     border-radius: 6px;
 }
 
@@ -196,7 +245,7 @@ body h4 {
     justify-content: space-around;
     font-size: 80%;
     background-color: white;
-    border: 1px solid black;
+    border: 1.5px solid black;
     border-radius: 6px;
 }
 
@@ -229,19 +278,54 @@ body h4 {
 
 #grilla-registros, #grilla-titulos {
     background-color: white;
-    border: 1px solid black;
+    border: 2px solid black;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-#registro-palabras {
+#grilla-registros {
+    padding-bottom: 3px;
+}
+
+#registro-tablero, #indicacion-tablero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 2px;
+    background-color: white;
+    border: 1.5px solid black;
+    border-bottom: none;
+    margin-top: 2%;
+    padding: 5% 30% 5% 30%;
+}
+
+#indicacion-tablero {
+    display: block;
+    font-size: 85%;
+    padding: 5% 15% 5% 15%;
+}
+
+#registro-palabras, #estadisticas {
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: white;
-    border: 1px solid black;
-    margin-top: 2%;
+    border: 1.5px solid black;
     padding-top: 0.5%;
     padding-bottom: 0.5%;
+}
+
+#registro-palabras {
+    border-top: 1px solid black;
+}
+
+#estadisticas {
+    align-items: center;
+    margin-top: 2%;
+    font-size: 70%;
+}
+
+#estadisticas div {
+    margin: 2% 0 2% 0;
 }
 
 #registro-palabras div {
@@ -251,15 +335,22 @@ body h4 {
 
 #ajustes {
     background-color: white;
-    border: 1px solid black;
+    border: 1.5px solid black;
     border-radius: 6px;
 }
 
-#ordenamiento-palabras label {
+#lista-tableros {
+    font-family: 'Merriweather';
+    font-size: 75%;
+    width: 80%;
+    margin: 0 10% 3% 10%;
+}
+
+#ordenamiento-palabras label, #tipo-tablero label {
     font-size: 85%;
 }
 
-#ordenamiento-palabras div {
+#ordenamiento-palabras div, #tipo-tablero div {
     margin-bottom: 4%;
 }
 
@@ -274,6 +365,10 @@ body h4 {
     margin: -2% 15% 0 15%;
 }
 
+#volumen-alarma p {
+    font-size: 85%;
+}
+
 #duracion-temporizador div {
     display: flex;
     justify-content: space-between;
@@ -286,12 +381,17 @@ body h4 {
     text-align: center;
 }
 
-#slider-volumen {
-    width: 65%;
+#slider-volumen, #slider-anotacion {
+    width: 55%;
 }
 
 #valor-volumen {
     display: inline;
+}
+
+#vaciar-registros {
+    margin: 3% 0 3% 0;
+    border-radius: 6px;
 }
 
 #acerca-de p {
@@ -320,7 +420,7 @@ body h4 {
     }
 
     #area-juego, #registros {
-    width: 94%;
-    margin: 3% 3% 3% 3%;
+        width: 94%;
+        margin: 3% 3% 3% 3%;
     }
 }

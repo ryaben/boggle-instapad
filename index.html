@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="icon.png">
     <script src="dep/jquery/jquery-3.5.1.min.js"></script>
     <script src="dep/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script src="dep/sweetalert/sweetalert.min.js"></script>
     <script src="dep/jscookie/js.cookie.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <title>Boggle Notepad</title>
+    <title>Boggle Instapad</title>
 </head>
 <body>
     <div id='navegacion'>
@@ -29,9 +30,31 @@
 
     <div id='area-juego' class='pestana'>
         <div id='herramientas'>
-            <audio class="audio"><source src="res/snd/alarma.mp3" type="audio/mp3"></audio>
-            <p id='jugadores'>Tocá el temporizador ►</p>
+            <audio id='audio-alarma' class="audio"><source src="res/snd/alarma.mp3" type="audio/mp3"></audio>
+            <audio id='audio-anotacion' class="audio"><source src="res/snd/anotacion.mp3" type="audio/mp3"></audio>
+            <audio id='audio-fallo' class="audio"><source src="res/snd/fallo.mp3" type="audio/mp3"></audio>
+            <p id='jugadores'>Tocá el temporizador →</p>
             <button id='temporizador'>180</button>
+        </div>
+        <div id='tablero-virtual'>
+            <div id='tablero'>
+                <div id='dado-0' class='dado libre'></div>
+                <div id='dado-1' class='dado libre'></div>
+                <div id='dado-2' class='dado libre'></div>
+                <div id='dado-3' class='dado libre'></div>
+                <div id='dado-4' class='dado libre'></div>
+                <div id='dado-5' class='dado libre'></div>
+                <div id='dado-6' class='dado libre'></div>
+                <div id='dado-7' class='dado libre'></div>
+                <div id='dado-8' class='dado libre'></div>
+                <div id='dado-9' class='dado libre'></div>
+                <div id='dado-10' class='dado libre'></div>
+                <div id='dado-11' class='dado libre'></div>
+                <div id='dado-12' class='dado libre'></div>
+                <div id='dado-13' class='dado libre'></div>
+                <div id='dado-14' class='dado libre'></div>
+                <div id='dado-15' class='dado libre'></div>
+            </div>
         </div>
         <div id='escritura'>
             <input id='palabra' type="text" minlength="3" maxlength="16">
@@ -58,22 +81,43 @@
 
     <div id='registros' class='pestana'>
         <div id='grilla-titulos'>
-            <div class='grilla-titulo'>Fecha</div>
-            <div class='grilla-titulo columna-centro'>Puntaje</div>
-            <div class='grilla-titulo'>Palabras</div>
+            <div id="titulo-fecha" class='grilla-titulo'>Fecha</div>
+            <div id="titulo-puntaje" class='grilla-titulo columna-centro'>Puntaje</div>
+            <div id="titulo-palabras" class='grilla-titulo'>Palabras</div>
         </div>
         <div id='grilla-registros'>
             
         </div>
-        <div id='registro-palabras'>
-            
-        </div>
-        <div id='estadísticas'>
+        <div id='carga-registro'>
+            <div id='indicacion-tablero'>Partida con tablero físico</div>
+            <div id='registro-tablero'>
 
+            </div>
+            <div id='registro-palabras'>
+                
+            </div>
+        </div>
+        <div id='estadisticas'>
+            <div class='estadisticas-dato' id='partidas-totales'>Partidas totales</div>
+            <div class='estadisticas-dato' id='puntos-partida'>Puntos por partida</div>
+            <div class='estadisticas-dato' id='puntos-totales'>Puntos totales</div>
+            <div class='estadisticas-dato' id='puntos-palabra'>Puntos por palabra</div>
+            <div class='estadisticas-dato' id='palabras-totales'>Palabras totales</div>
+            <div class='estadisticas-dato' id='palabras-partida'>Palabras por partida</div>
         </div>
     </div>
 
     <div id='ajustes' class='pestana'>
+        <div id='tipo-tablero'>
+            <h4>Tipo de tablero</h4>
+            <select id='lista-tableros' size='1'>
+                <option value='fisico'>Físico (fuera de la app)</option>
+                <option value='hasbro-esp'>Scrabble Boggle en español de Hasbro</option>
+                <option value='kitos'>Boggle en español de Kito's</option>
+                <option value='hasbro-int'>Boggle internacional de Hasbro</option>
+            </select>
+        </div>
+        <hr>
         <div id='ordenamiento-palabras'>
             <h4>Ordenamiento de palabras</h4>
             <div>
@@ -93,16 +137,24 @@
         </div>
         <hr>
         <div id='volumen-alarma'>
-            <h4>Volumen de alarma</h4>
+            <h4>Volumen de sonido</h4>
             <div>
+                <p id='valor-volumen'>Alarma</p>
                 <input id='slider-volumen' type='range' min="0" max="100" value="80">
-                <p id='valor-volumen'>80%</p>
             </div>
+            <div>
+                <p id='valor-anotacion'>Anotación</p>
+                <input id='slider-anotacion' type='range' min="0" max="100" value="100">
+            </div>
+        </div>
+        <hr>
+        <div>
+            <button id='vaciar-registros'>Vaciar el historial de registros</button>
         </div>
         <hr>
         <div id='acerca-de'>
             <h4>Acerca de Boggle Instapad</h4>
-            <h6>Versión: 1.0.0</h6>
+            <h6>Versión: 1.1.0</h6>
             <p>Boggle Instapad fue desarrollado por <a href='https://github.com/ryaben' target="_blank">Ramiro Yaben</a>, y es un software libre, gratuito y de código abierto que se puede encontrar en <a href='https://github.com/ryaben/boggle-instapad' target="_blank">GitHub</a>.</p>
             <p>Para que los ajustes se guarden, cerrá la app con el botón de retroceder.</p>
         </div>
