@@ -202,16 +202,19 @@ $(document).ready( function($){
         recuperarRegistros() {
             let registrosRecuperados = [];
 
-            for (let index = 0; index < localStorage.length; index++) {
-                let partidaIndex = JSON.parse(localStorage.getItem('partida' + index));
-
-                registrosRecuperados.push(partidaIndex);
-
-                //Permite ver los registros de versiones anteriores que no tenían tablero guardado, agregándoles la información de tablero físico.
-                if (partidaIndex.hasOwnProperty('IDtablero') !== true) {
-                    registrosRecuperados[registrosRecuperados.length - 1].IDtablero = "";
+            if (localStorage.length > 0) {
+                for (let index = 0; index < localStorage.length; index++) {
+                    let partidaIndex = JSON.parse(localStorage.getItem('partida' + index));
+    
+                    registrosRecuperados.push(partidaIndex);
+    
+                    //Permite ver los registros de versiones anteriores que no tenían tablero guardado, agregándoles la información de tablero físico.
+                    if (partidaIndex != undefined && partidaIndex.hasOwnProperty('IDtablero') !== true) {
+                        registrosRecuperados[registrosRecuperados.length - 1].IDtablero = "";
+                    }
                 }
-            };
+            }
+
             return registrosRecuperados;
         }
 
@@ -434,14 +437,16 @@ $(document).ready( function($){
             $grillaRegistros.empty();
 
             //Los divs llevan por id el numero de la partida que visualizan, así como un evento y con operadores numéricos para pintar correctamente sus celdas contiguas al hacer click.
-            for (let index = 0; index < this.arrayRegistros.length; index++) {
-                let cargaRegistro = $(
-                    `<div class="grilla-registro grilla-partida-${index}" onclick="listaRegistros.visualizarPalabras($(this), 1, 2)">${this.arrayRegistros[index].fecha}</div>
-                    <div class="grilla-registro grilla-partida-${index}" onclick="listaRegistros.visualizarPalabras($(this), 1, -1)">${this.arrayRegistros[index].puntaje}</div>
-                    <div class="grilla-registro grilla-partida-${index}" onclick="listaRegistros.visualizarPalabras($(this), -1, -2)">${this.arrayRegistros[index].palabras}</div>`
-                );
-
-                cargaRegistro.appendTo($grillaRegistros);
+            if (this.arrayRegistros != null) {
+                for (let index = 0; index < this.arrayRegistros.length; index++) {
+                    let cargaRegistro = $(
+                        `<div class="grilla-registro grilla-partida-${index}" onclick="listaRegistros.visualizarPalabras($(this), 1, 2)">${this.arrayRegistros[index].fecha}</div>
+                        <div class="grilla-registro grilla-partida-${index}" onclick="listaRegistros.visualizarPalabras($(this), 1, -1)">${this.arrayRegistros[index].puntaje}</div>
+                        <div class="grilla-registro grilla-partida-${index}" onclick="listaRegistros.visualizarPalabras($(this), -1, -2)">${this.arrayRegistros[index].palabras}</div>`
+                    );
+    
+                    cargaRegistro.appendTo($grillaRegistros);
+                }
             }
 
             this.calcularEstadisticas();

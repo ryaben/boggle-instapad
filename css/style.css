@@ -17,7 +17,8 @@ body {
     text-align: center;
     background-image: url("../res/img/fondo.jpg");
     background-size: unset;
-    margin: 0;
+    margin: auto;
+    max-width: 600px;
 }
 
 body h4 {
