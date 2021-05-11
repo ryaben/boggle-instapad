@@ -184,17 +184,17 @@ $(document).ready( function($){
         //Al pasar una palabra o variable por parámetro, verifica su puntaje de acuerdo a su longitud.
         verificarPuntaje(variableVerificable) {
             if (variableVerificable < 3) {
-                return 0
+                return 0;
             } else if (variableVerificable === 3 || variableVerificable === 4) {
-                return 1
+                return 1;
             } else if (variableVerificable === 5) {
-                return 2
+                return 2;
             } else if (variableVerificable === 6) {
-                return 3
+                return 3;
             } else if (variableVerificable === 7) {
-                return 5
+                return 5;
             } else if (variableVerificable >= 8) {
-                return 11
+                return 11;
             }
         }
         
@@ -205,12 +205,15 @@ $(document).ready( function($){
             if (localStorage.length > 0) {
                 for (let index = 0; index < localStorage.length; index++) {
                     let partidaIndex = JSON.parse(localStorage.getItem('partida' + index));
-    
-                    registrosRecuperados.push(partidaIndex);
-    
-                    //Permite ver los registros de versiones anteriores que no tenían tablero guardado, agregándoles la información de tablero físico.
-                    if (partidaIndex != undefined && partidaIndex.hasOwnProperty('IDtablero') !== true) {
-                        registrosRecuperados[registrosRecuperados.length - 1].IDtablero = "";
+                    
+                    //Si el objeto del localStorage es un registro de partida, lo añade a la lista.
+                    if (partidaIndex != null) {
+                        registrosRecuperados.push(partidaIndex);
+
+                        //Permite ver los registros de versiones anteriores que no tenían tablero guardado, agregándoles la información de tablero físico.
+                        if (partidaIndex.hasOwnProperty('IDtablero') !== true) {
+                            registrosRecuperados[registrosRecuperados.length - 1].IDtablero = "";
+                        }
                     }
                 }
             }
